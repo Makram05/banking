@@ -41,4 +41,13 @@ public class AccountServiceImpl implements AccountService{
         Accounts accountsDetail = accountsRepository.findById(accountId).orElseThrow(() -> new RuntimeException("account details not found"));
         return mapToDto(accountsDetail);
     }
+
+    public AccountDto depoistAmount(long id,double amount) {
+        Accounts accountsDetail = accountsRepository.findById(id).orElseThrow(() -> new RuntimeException("account details not found"));
+        double depoisted = accountsDetail.getBalance() + amount;
+        accountsDetail.setBalance(depoisted);
+        Accounts saved = accountsRepository.save(accountsDetail);
+        return mapToDto(saved);
+
+    }
 }
