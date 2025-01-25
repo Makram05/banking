@@ -1,13 +1,13 @@
-Banking Spring Boot REST API
+<b>Banking Spring Boot REST API<b><br>
 This project is a simple Banking System REST API built using Spring Boot. It provides a set of endpoints to manage user accounts, including functionality to create accounts, retrieve account details, deposit and withdraw money, and delete accounts.
 
 Features:
-Create an Account: Allows users to create a new account by providing their name and initial balance.
-Get Account Details by ID: Retrieve the details of a specific account by providing the account ID.
-Get All Account Details: Fetch a list of all accounts in the system.
-Deposit Money: Deposit funds into an account, which updates the account balance accordingly.
-Withdraw Money: Withdraw funds from an account, with balance deduction and sufficient funds check.
-Delete Account: Delete an account by its ID from the system.
+1.Create an Account: Allows users to create a new account by providing their name and initial balance.<br>
+2. Get Account Details by ID: Retrieve the details of a specific account by providing the account ID.<br>
+3.Get All Account Details: Fetch a list of all accounts in the system.<br>
+4.Deposit Money: Deposit funds into an account, which updates the account balance accordingly.<br>
+5.Withdraw Money: Withdraw funds from an account, with balance deduction and sufficient funds check.<br>
+6.Delete Account: Delete an account by its ID from the system.<br>
 
 API Endpoints:
 POST /accounts: Create a new account.
