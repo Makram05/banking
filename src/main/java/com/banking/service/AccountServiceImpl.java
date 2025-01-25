@@ -6,6 +6,9 @@ import com.banking.repository.AccountsRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AccountServiceImpl implements AccountService{
 
@@ -62,5 +65,18 @@ public class AccountServiceImpl implements AccountService{
         Accounts saved = accountsRepository.save(accountsDetail);
         return mapToDto(saved);
 
+    }
+
+    @Override
+    public List<AccountDto> getAllAccounts() {
+        List<Accounts> accountsList = accountsRepository.findAll();
+        List<AccountDto> collect = accountsList.stream().map(x -> mapToDto(x)).collect(Collectors.toList());
+        return collect;
+    }
+
+    @Override
+    public String deleteAccount(long id) {
+        accountsRepository.deleteById(id);
+        return "Account deleted successfully";
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -47,5 +48,19 @@ public class AccountsController {
         AccountDto accountDto = accountService.withdrawAmount(id, withdrawAmount);
         return ResponseEntity.ok(accountDto);
 
+    }
+
+    //Get All Account Information REST API
+    @GetMapping
+    public ResponseEntity<List<AccountDto>> getAllAccounts(){
+        List<AccountDto> allAccounts = accountService.getAllAccounts();
+        return ResponseEntity.ok(allAccounts);
+    }
+
+    //Delete Account REST API
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteAccount(@PathVariable long id){
+        String message = accountService.deleteAccount(id);
+        return ResponseEntity.ok(message);
     }
 }
