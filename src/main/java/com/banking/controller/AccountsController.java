@@ -34,9 +34,18 @@ public class AccountsController {
     //Deposit REST API
 
     @PutMapping("/{id}/deposit")
-    public ResponseEntity<AccountDto> depoist(@PathVariable long id, @RequestBody Map<String,Double> request){
+    public ResponseEntity<AccountDto> deposit(@PathVariable long id, @RequestBody Map<String,Double> request){
         double amount = request.get("amount");
-        AccountDto updatedAccount = accountService.depoistAmount(id, amount);
+        AccountDto updatedAccount = accountService.depositAmount(id, amount);
         return ResponseEntity.ok(updatedAccount);
+    }
+
+    //Withdrawal REST API
+    @PutMapping("/{id}/withdraw")
+    public ResponseEntity<AccountDto> withdraw(@PathVariable long id, @RequestBody Map<String,Double> request){
+        Double withdrawAmount = request.get("withdrawAmount");
+        AccountDto accountDto = accountService.withdrawAmount(id, withdrawAmount);
+        return ResponseEntity.ok(accountDto);
+
     }
 }

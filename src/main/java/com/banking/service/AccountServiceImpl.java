@@ -42,10 +42,23 @@ public class AccountServiceImpl implements AccountService{
         return mapToDto(accountsDetail);
     }
 
-    public AccountDto depoistAmount(long id,double amount) {
+    public AccountDto depositAmount(long id,double amount) {
         Accounts accountsDetail = accountsRepository.findById(id).orElseThrow(() -> new RuntimeException("account details not found"));
-        double depoisted = accountsDetail.getBalance() + amount;
-        accountsDetail.setBalance(depoisted);
+        double deposited = accountsDetail.getBalance() + amount;
+        accountsDetail.setBalance(deposited);
+        Accounts saved = accountsRepository.save(accountsDetail);
+        return mapToDto(saved);
+
+    }
+
+    @Override
+    public AccountDto withdrawAmount(long id, double amount) {
+        Accounts accountsDetail = accountsRepository.findById(id).orElseThrow(() -> new RuntimeException("account details not found"));
+        if(accountsDetail.getBalance() < amount){
+            throw new RuntimeException("Insufficient balance");
+        }
+        double withdrawn = accountsDetail.getBalance() - amount;
+        accountsDetail.setBalance(withdrawn);
         Accounts saved = accountsRepository.save(accountsDetail);
         return mapToDto(saved);
 
